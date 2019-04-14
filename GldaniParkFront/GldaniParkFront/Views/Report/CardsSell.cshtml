@@ -1,0 +1,81 @@
+﻿@model IEnumerable<GldaniParkService.Models.ReportModels.CardsSellResponse>
+
+@{
+    ViewBag.Title = "CardsSell";
+}
+
+<h2>CardsSell</h2>
+
+
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <div class="col-md-6">
+            <div class="col-md-4">
+                @Html.Label("დაწყების თარიღი", htmlAttributes: new {@class = "control-label col-md-2"})
+            </div>
+            <div class="col-md-8">
+                @Html.Editor(DateTime.Now.ToString(), new {htmlAttributes = new {Name = "StartDate", @class = "form-control datepicker", Value = ViewBag.StartDate.ToString("yyyy-MM-dd")}})
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="col-md-4">
+                @Html.Label("დასრულების თარიღი", htmlAttributes: new {@class = "control-label col-md-2"})
+            </div>
+            <div class="col-md-8">
+                @Html.Editor(DateTime.Now.ToString(), new {htmlAttributes = new {Name = "EndDate", @class = "form-control datepicker", Value = ViewBag.EndDate.ToString("yyyy-MM-dd")}})
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SellAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReversedAmount)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SellAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReversedAmount)
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Enter" class="btn btn-default" />
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    $(function () {
+        $('.datepicker').datetimepicker({
+            format: "YYYY-MM-DD"
+        });
+    });
+
+
+</script>

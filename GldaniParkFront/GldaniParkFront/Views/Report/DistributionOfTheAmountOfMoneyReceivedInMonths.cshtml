@@ -1,0 +1,63 @@
+﻿@model IEnumerable<GldaniParkService.Models.ReportModels.DistributionOfTheAmountOfMoneyReceivedInMonthsResponse>
+
+@{
+    ViewBag.Title = "DistributionOfTheAmountOfMoneyReceivedInMonths";
+}
+
+<h2>DistributionOfTheAmountOfMoneyReceivedInMonths</h2>
+
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <div class="col-md-6">
+            <div class="col-md-4">
+                @Html.Label("წელი", htmlAttributes: new { @class = "control-label col-md-2" })
+            </div>
+            <div class="col-md-8">
+                @Html.DropDownList("year", (IEnumerable<SelectListItem>)ViewBag.YearList.Items, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="col-md-4">
+                @Html.Label("თვე", htmlAttributes: new { @class = "control-label col-md-2" })
+            </div>
+            <div class="col-md-8">
+                @Html.DropDownList("month", (IEnumerable<SelectListItem>)ViewBag.MonthList.Items, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Income)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Income)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Enter" class="btn btn-default" />
+        </div>
+    </div>
+}

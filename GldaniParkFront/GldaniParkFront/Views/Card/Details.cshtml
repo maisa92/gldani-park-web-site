@@ -1,0 +1,123 @@
+﻿@model GldaniParkService.Models.ReportModels.CardHistoryResponse
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div>
+    <h4>Card Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CardId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CardId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CardPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CardPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RestAmount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RestAmount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+    </dl>
+</div>
+
+
+
+
+<h2>Card Transaction History</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("ატრაქციონის ნომერი")
+        </th>
+        <th>
+            @Html.DisplayName("თარიღი")
+        </th>
+        <th>
+            @Html.DisplayName("თანხა")
+        </th>
+        <th>
+            @Html.DisplayName("ტრანზაქციის ტიპი")
+        </th>
+    </tr>
+
+    @foreach (var item in Model.TransactionList)
+    {
+        <tr>
+            <td>
+                @Html.DisplayName(item.Type == true ? item.AttractionId : "")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransactionDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+
+            <td>
+                @Html.DisplayName(item.Type == true ? "თანხის შეტანა" : "თანხის დახარჯვა")
+            </td>
+        </tr>
+    }
+
+</table>
+
+<h2>ატრაქციონების ისტორია ბარათზე</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("ატრაქციონის ნომერი")
+        </th>
+        <th>
+            @Html.DisplayName("სახელი")
+        </th>
+        <th>
+            @Html.DisplayName("თარიღი")
+        </th>
+    </tr>
+
+    @foreach (var item in Model.AttractionList)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+        </tr>
+    }
+
+</table>
